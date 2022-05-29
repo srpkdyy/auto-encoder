@@ -36,10 +36,12 @@ class AutoEncoder(nn.Module):
             make_decode_layers(dims[1], dims[0]),
             make_decode_layers(dims[0], n_channels)
         )
+        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         out = self.encoder(x)
         out = self.decoder(out)
+        out = self.sigmoid(out)
         return out
     
     def encode(self, x):
