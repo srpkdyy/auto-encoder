@@ -12,7 +12,7 @@ from .auto_encoder import AutoEncoder
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--in-dir', type=str, default='./data')
 parser.add_argument('-d', '--out-dir', type=str, default='./output')
-parser.add_argument('-b', '--batch-size'type=int, default=128)
+parser.add_argument('-b', '--batch-size', type=int, default=128)
 parser.add_argument('-e', '--epochs', type=int, default=30)
 args = parser.parse_args()
 
