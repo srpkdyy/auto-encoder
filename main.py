@@ -55,6 +55,7 @@ for epoch in range(args.epochs):
 
     print(f'Epoch: {epoch} Loss: {total_loss:.4f}')
 
+os.makedirs(args.out_dir, exist_ok=True)
 torch.save(model.state_dict(), f'{args.out_dir}/latest.pth')
 print('Save model weights')
 
