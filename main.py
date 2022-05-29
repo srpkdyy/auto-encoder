@@ -14,6 +14,7 @@ parser.add_argument('-i', '--in-dir', type=str, default='./data')
 parser.add_argument('-o', '--out-dir', type=str, default='./output')
 parser.add_argument('-b', '--batch-size', type=int, default=128)
 parser.add_argument('-e', '--epochs', type=int, default=30)
+parser.add_argument('-lr', type=float, default=1e-2)
 args = parser.parse_args()
 
 
@@ -38,7 +39,7 @@ if dcount > 1:
 model.train()
 
 optimizer = optim.Adam(model.parameters(), lr=1e-3*dcount)
-criterion = nn.BCELoss()
+criterion = nn.BCELoss(reduction='sum')
 
 for epoch in range(args.epochs):
     total_loss = 0
@@ -53,7 +54,7 @@ for epoch in range(args.epochs):
         total_loss += loss.item()
         optimizer.step()
 
-    print(f'Epoch: {epoch} Loss: {total_loss:.4f}')
+    print(f'Epoch: {epoch} Loss: {total_loss/len(dataloader.dataset):.4f}')
 
 os.makedirs(args.out_dir, exist_ok=True)
 torch.save(model.state_dict(), f'{args.out_dir}/latest.pth')
