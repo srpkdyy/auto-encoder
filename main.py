@@ -40,7 +40,7 @@ model.train()
 optimizer = optim.Adam(model.parameters(), lr=1e-3*dcount)
 criterion = nn.BCELoss()
 
-for epoch in args.epochs:
+for epoch in range(args.epochs):
     total_loss = 0
     for img, _ in tqdm(dataloader):
         img = img.to(device)
