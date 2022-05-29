@@ -38,7 +38,7 @@ if dcount > 1:
     torch.backends.cudnn.benchmark = True
 model.train()
 
-optimizer = optim.Adam(model.parameters(), lr=1e-3*dcount)
+optimizer = optim.Adam(model.parameters(), lr=args.lr*dcount)
 criterion = nn.BCELoss(reduction='sum')
 
 for epoch in range(args.epochs):
