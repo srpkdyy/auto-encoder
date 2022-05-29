@@ -25,7 +25,7 @@ class AutoEncoder(nn.Module):
     def __init__(self, n_channels=3, dims=(16, 32, 64, 128)):
         super().__init__()
         self.encoder = nn.Sequential(
-            make_encode_layers(n_classes, dims[0]),
+            make_encode_layers(n_channels, dims[0]),
             make_encode_layers(dims[0], dims[1]),
             make_encode_layers(dims[1], dims[2]),
             make_encode_layers(dims[2], dims[3])
